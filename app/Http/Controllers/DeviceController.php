@@ -21,7 +21,7 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        $userAgent = $this->getUserAgent();
 
         $dd = new DeviceDetector($userAgent);
         $dd->parse();
@@ -31,5 +31,15 @@ class DeviceController extends Controller
         $Device->os = $dd->getOS()['name'];
 
         return response()->json($Device);
+    }
+
+    /**
+     * Retrieve HTTP_USER_AGENT request header.
+     *
+     * @return Response
+     */
+    public function getUserAgent()
+    {
+        return $_SERVER['HTTP_USER_AGENT'];
     }
 }
