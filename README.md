@@ -22,10 +22,10 @@ Documentation for the framework can be found on the [Lumen website](https://lume
         composer install
 
     To run tests for device detection:
-        ./vendor/bin/phpunit --bootstrap vendor/autoload.php
+        ./vendor/bin/phpunit
 
     To build the container use:
-        docker build --file .docker/Dockerfile -t api .
+        docker build --file docker/Dockerfile -t api .
 
     To run it:
         docker run --rm -p 8080:80 api
