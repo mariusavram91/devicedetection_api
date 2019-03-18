@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Device;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\DeviceParserAbstract;
@@ -14,6 +15,11 @@ DeviceParserAbstract::setVersionTruncation(
 
 class DeviceController extends Controller
 {
+    protected $request;
+
+    public function __construct(Request $request) {
+        $this->request = $request;
+    }
     /**
      * Retrieve the type and OS for the given USER AGENT value.
      *
@@ -40,6 +46,7 @@ class DeviceController extends Controller
      */
     public function getUserAgent()
     {
-        return $_SERVER['HTTP_USER_AGENT'];
+        return $this->request->header('User-Agent');
+        //return $_SERVER['HTTP_USER_AGENT'];
     }
 }

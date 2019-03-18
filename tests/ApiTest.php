@@ -1,19 +1,17 @@
 <?php
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
-
-class ExampleTest extends TestCase
+class ApiTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic Api test for GET method.
      *
      * @return void
      */
-    public function testExample()
+    public function testApi()
     {
         $this->get('/');
 
+        $this->assertEquals(200, $this->response->status());
         $this->assertEquals(
             $this->app->version(), $this->response->getContent()
         );
